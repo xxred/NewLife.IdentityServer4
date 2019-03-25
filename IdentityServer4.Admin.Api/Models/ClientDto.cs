@@ -1,6 +1,4 @@
-﻿
-using IdentityServer4.Admin.Api.Models;
-using IdentityServer4.Admin.Logic.Entities.Services;
+﻿using IdentityServer4.Admin.Logic.Entities.Services;
 using IdentityServer4.Admin.Logic.Logic.Services;
 using IdentityServer4.Models;
 using System.Collections.Generic;

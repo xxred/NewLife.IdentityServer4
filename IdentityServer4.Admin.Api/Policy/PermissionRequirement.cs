@@ -1,4 +1,4 @@
-using IdentityExpress.Manager.BusinessLogic.Entities.Configuration;
+using IdentityServer4.Admin.Logic.Entities.Configuration;
 using Microsoft.AspNetCore.Authorization;
 
 namespace IdentityServer4.Admin.Api.Policy

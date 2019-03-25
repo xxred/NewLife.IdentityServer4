@@ -22,26 +22,14 @@ namespace IdentityServer4.Admin.Api.Formatters
       this.SupportedEncodings.Add(Encoding.Unicode);
     }
 
-    protected override bool CanWriteType(Type type)
-    {
-      return type == typeof (AuditQueryResults);
-    }
-
     public override async Task WriteResponseBodyAsync(OutputFormatterWriteContext context, Encoding selectedEncoding)
     {
       HttpResponse response = context.HttpContext.Response;
-      AuditQueryResults auditQueryResult;
-      if ((auditQueryResult = context.Object as AuditQueryResults) == null)
-        return;
+
       string filename = CsvOutputFormatter.GenerateAuditQueryResultsFilename(context.HttpContext.Request);
       response.Headers.Add("Content-Disposition", (StringValues) ("attachment; filename=" + filename));
       await response.WriteAsync("When,Subject Name,Subject Identifier,Subject Type,Action,Resource Name,Resource Type,Source,Succeeded,Description\n", new CancellationToken());
-      foreach (AuditQueryRow result in auditQueryResult.Results)
-      {
-        AuditQueryRow auditRow = result;
-        await response.WriteAsync(string.Join(',', string.Format("\"{0:u}\"", (object) auditRow.When), "\"" + auditRow.Subject.Name + "\"", "\"" + auditRow.Subject.Identifier + "\"", "\"" + auditRow.Subject.Type + "\"", "\"" + auditRow.Action + "\"", "\"" + auditRow.Resource.Name + "\"", "\"" + auditRow.Resource.Type + "\"", "\"" + auditRow.Source + "\"", string.Format("\"{0}\"", (object) auditRow.Succeeded), "\"" + auditRow.Description + "\"") + "\n", new CancellationToken());
-        auditRow = (AuditQueryRow) null;
-      }
+
       filename = (string) null;
     }
 

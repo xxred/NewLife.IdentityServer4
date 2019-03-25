@@ -1,6 +1,6 @@
 ﻿
-using IdentityExpress.Manager.BusinessLogic.Entities.Services;
 using IdentityServer4.Admin.Api.Policy;
+using IdentityServer4.Admin.Logic.Entities.Services;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;

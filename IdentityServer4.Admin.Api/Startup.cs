@@ -13,7 +13,7 @@ using Microsoft.Extensions.Options;
 
 namespace IdentityServer4.Admin.Api
 {
-    public class Startup
+    public class Startup:IStartup
     {
         public Startup(IConfiguration configuration)
         {
@@ -21,6 +21,18 @@ namespace IdentityServer4.Admin.Api
         }
 
         public IConfiguration Configuration { get; }
+
+        public IServiceProvider ConfigureServices(IServiceCollection services)
+        {
+            services.AddMvc();
+
+            return services.BuildServiceProvider();
+        }
+
+        public void Configure(IApplicationBuilder app)
+        {
+            app.UseMvcWithDefaultRoute();
+        }
     }
 }
 

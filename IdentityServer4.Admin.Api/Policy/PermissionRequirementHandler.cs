@@ -1,5 +1,3 @@
-using IdentityExpress.Manager.BusinessLogic.Constants;
-using IdentityExpress.Manager.BusinessLogic.Logic.Services;
 using IdentityServer4.Admin.Api.Policy;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -12,15 +10,12 @@ namespace IdentityServer4.Admin.Api.Policy
     public class PermissionRequirementHandler : AuthorizationHandler<PermissionRequirement>
 	{
 		private readonly IPermissionService permissionService;
-
-		private readonly IRecordAuditEventsService audit;
-
+        
 		private readonly IHttpContextAccessor httpContextAccessor;
 
-		public PermissionRequirementHandler(IPermissionService permissionService, IRecordAuditEventsService audit, IHttpContextAccessor httpContextAccessor)
+		public PermissionRequirementHandler(IPermissionService permissionService, IHttpContextAccessor httpContextAccessor)
 		{
 			this.permissionService = permissionService;
-			this.audit = audit;
 			this.httpContextAccessor = httpContextAccessor;
 		}
 

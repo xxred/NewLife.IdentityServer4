@@ -1,5 +1,4 @@
-using IdentityExpress.Manager.BusinessLogic.Entities.Configuration;
-using IdentityServer4.Admin.Api.Policy;
+using IdentityServer4.Admin.Logic.Entities.Configuration;
 using IdentityServer4.Admin.Logic.Entities.Services;
 using System;
 using System.Collections.Generic;
@@ -33,7 +32,7 @@ namespace IdentityServer4.Admin.Api.Policy
 			}
 			if (permissionService.HasPermission(userClaims, (Permission[])new Permission[1]
 			{
-				4
+                Permission.All
 			}))
 			{
 				return true;
