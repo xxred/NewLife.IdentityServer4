@@ -1,10 +1,4 @@
-﻿
-
-
-
-
-
-using IdentityExpress.Identity;
+﻿using Extensions.Identity.Stores.XCode;
 using IdentityServer4.Admin.Logic.Entities.Services;
 using Microsoft.AspNetCore.Identity;
 using System;
@@ -16,201 +10,196 @@ using System.Threading.Tasks;
 
 namespace IdentityServer4.Admin.Logic.Interfaces.Identity
 {
-  public interface IUserManager
-  {
-    bool SupportsUserAuthenticationTokens { get; }
+    public interface IUserManager
+    {
+        bool SupportsUserAuthenticationTokens { get; }
 
-    bool SupportsUserTwoFactor { get; }
+        bool SupportsUserTwoFactor { get; }
 
-    bool SupportsUserPassword { get; }
+        bool SupportsUserPassword { get; }
 
-    bool SupportsUserSecurityStamp { get; }
+        bool SupportsUserSecurityStamp { get; }
 
-    bool SupportsUserRole { get; }
+        bool SupportsUserRole { get; }
 
-    bool SupportsUserLogin { get; }
+        bool SupportsUserLogin { get; }
 
-    bool SupportsUserEmail { get; }
+        bool SupportsUserEmail { get; }
 
-    bool SupportsUserPhoneNumber { get; }
+        bool SupportsUserPhoneNumber { get; }
 
-    bool SupportsUserClaim { get; }
+        bool SupportsUserClaim { get; }
 
-    bool SupportsUserLockout { get; }
+        bool SupportsUserLockout { get; }
 
-    bool SupportsQueryableUsers { get; }
+        bool SupportsQueryableUsers { get; }
 
-    IQueryable<IdentityExpressUser> Users { get; }
+        IQueryable<IdentityUser> Users { get; }
 
-    string GetUserName(ClaimsPrincipal principal);
+        string GetUserName(ClaimsPrincipal principal);
 
-    string GetUserId(ClaimsPrincipal principal);
+        string GetUserId(ClaimsPrincipal principal);
 
-    Task<IdentityExpressUser> GetUserAsync(ClaimsPrincipal principal);
+        Task<IdentityUser> GetUserAsync(ClaimsPrincipal principal);
 
-    Task<string> GenerateConcurrencyStampAsync(IdentityExpressUser user);
+        Task<string> GenerateConcurrencyStampAsync(IdentityUser user);
 
-    Task<IdentityResult> CreateAsync(IdentityExpressUser user);
+        Task<IdentityResult> CreateAsync(IdentityUser user);
 
-    Task<IdentityResult> UpdateAsync(IdentityExpressUser user);
+        Task<IdentityResult> UpdateAsync(IdentityUser user);
 
-    Task<IdentityResult> DeleteAsync(IdentityExpressUser user);
+        Task<IdentityResult> DeleteAsync(IdentityUser user);
 
-    Task<IdentityExpressUser> FindByIdAsync(string userId);
+        Task<IdentityUser> FindByIdAsync(string userId);
 
-    Task<IdentityExpressUser> FindByNameAsync(string userName);
+        Task<IdentityUser> FindByNameAsync(string userName);
 
-    Task<IdentityResult> CreateAsync(IdentityExpressUser user, string password);
+        Task<IdentityResult> CreateAsync(IdentityUser user, string password);
 
-    string NormalizeKey(string key);
+        string NormalizeKey(string key);
 
-    Task UpdateNormalizedUserNameAsync(IdentityExpressUser user);
+        Task UpdateNormalizedUserNameAsync(IdentityUser user);
 
-    Task<string> GetUserNameAsync(IdentityExpressUser user);
+        Task<string> GetUserNameAsync(IdentityUser user);
 
-    Task<IdentityResult> SetUserNameAsync(IdentityExpressUser user, string userName);
+        Task<IdentityResult> SetUserNameAsync(IdentityUser user, string userName);
 
-    Task<string> GetUserIdAsync(IdentityExpressUser user);
+        Task<string> GetUserIdAsync(IdentityUser user);
 
-    Task<bool> CheckPasswordAsync(IdentityExpressUser user, string password);
+        Task<bool> CheckPasswordAsync(IdentityUser user, string password);
 
-    Task<bool> HasPasswordAsync(IdentityExpressUser user);
+        Task<bool> HasPasswordAsync(IdentityUser user);
 
-    Task<IdentityResult> AddPasswordAsync(IdentityExpressUser user, string password);
+        Task<IdentityResult> AddPasswordAsync(IdentityUser user, string password);
 
-    Task<IdentityResult> ChangePasswordAsync(IdentityExpressUser user, string currentPassword, string newPassword);
+        Task<IdentityResult> ChangePasswordAsync(IdentityUser user, string currentPassword, string newPassword);
 
-    Task<string> GetSecurityStampAsync(IdentityExpressUser user);
+        Task<string> GetSecurityStampAsync(IdentityUser user);
 
-    Task<IdentityResult> UpdateSecurityStampAsync(IdentityExpressUser user);
+        Task<IdentityResult> UpdateSecurityStampAsync(IdentityUser user);
 
-    Task<string> GeneratePasswordResetTokenAsync(IdentityExpressUser user);
+        Task<string> GeneratePasswordResetTokenAsync(IdentityUser user);
 
-    Task<IdentityResult> ResetPasswordAsync(IdentityExpressUser user, string token, string newPassword);
+        Task<IdentityResult> ResetPasswordAsync(IdentityUser user, string token, string newPassword);
 
-    Task<IdentityExpressUser> FindByLoginAsync(string loginProvider, string providerKey);
+        Task<IdentityUser> FindByLoginAsync(string loginProvider, string providerKey);
 
-    Task<IdentityResult> RemoveLoginAsync(IdentityExpressUser user, string loginProvider, string providerKey);
+        Task<IdentityResult> RemoveLoginAsync(IdentityUser user, string loginProvider, string providerKey);
 
-    Task<IdentityResult> AddLoginAsync(IdentityExpressUser user, UserLoginInfo login);
+        Task<IdentityResult> AddLoginAsync(IdentityUser user, UserLoginInfo login);
 
-    Task<IList<UserLoginInfo>> GetLoginsAsync(IdentityExpressUser user);
+        Task<IList<UserLoginInfo>> GetLoginsAsync(IdentityUser user);
 
-    Task<IdentityResult> AddClaimAsync(IdentityExpressUser user, Claim claim);
+        Task<IdentityResult> AddClaimAsync(IdentityUser user, Claim claim);
 
-    Task<IdentityResult> AddClaimsAsync(IdentityExpressUser user, IEnumerable<Claim> claims);
+        Task<IdentityResult> AddClaimsAsync(IdentityUser user, IEnumerable<Claim> claims);
 
-    Task<IdentityResult> ReplaceClaimAsync(IdentityExpressUser user, Claim claim, Claim newClaim);
+        Task<IdentityResult> ReplaceClaimAsync(IdentityUser user, Claim claim, Claim newClaim);
 
-    Task<IdentityResult> RemoveClaimAsync(IdentityExpressUser user, Claim claim);
+        Task<IdentityResult> RemoveClaimAsync(IdentityUser user, Claim claim);
 
-    Task<IdentityResult> RemoveClaimsAsync(IdentityExpressUser user, IEnumerable<Claim> claims);
+        Task<IdentityResult> RemoveClaimsAsync(IdentityUser user, IEnumerable<Claim> claims);
 
-    Task<IList<Claim>> GetClaimsAsync(IdentityExpressUser user);
+        Task<IList<Claim>> GetClaimsAsync(IdentityUser user);
 
-    Task<IdentityResult> AddToRoleAsync(IdentityExpressUser user, string role);
+        Task<IdentityResult> AddToRoleAsync(IdentityUser user, string role);
 
-    Task<IdentityResult> AddToRolesAsync(IdentityExpressUser user, IEnumerable<string> roles);
+        Task<IdentityResult> AddToRolesAsync(IdentityUser user, IEnumerable<string> roles);
 
-    Task<IdentityResult> RemoveFromRoleAsync(IdentityExpressUser user, string role);
+        Task<IdentityResult> RemoveFromRoleAsync(IdentityUser user, string role);
 
-    Task<IdentityResult> RemoveFromRolesAsync(IdentityExpressUser user, IEnumerable<string> roles);
+        Task<IdentityResult> RemoveFromRolesAsync(IdentityUser user, IEnumerable<string> roles);
 
-    Task<IList<string>> GetRolesAsync(IdentityExpressUser user);
+        Task<IList<string>> GetRolesAsync(IdentityUser user);
 
-    Task<bool> IsInRoleAsync(IdentityExpressUser user, string role);
+        Task<bool> IsInRoleAsync(IdentityUser user, string role);
 
-    Task<string> GetEmailAsync(IdentityExpressUser user);
+        Task<string> GetEmailAsync(IdentityUser user);
 
-    Task<IdentityResult> SetEmailAsync(IdentityExpressUser user, string email);
+        Task<IdentityResult> SetEmailAsync(IdentityUser user, string email);
 
-    Task<IdentityExpressUser> FindByEmailAsync(string email);
+        Task<IdentityUser> FindByEmailAsync(string email);
 
-    Task UpdateNormalizedEmailAsync(IdentityExpressUser user);
+        Task UpdateNormalizedEmailAsync(IdentityUser user);
 
-    Task<string> GenerateEmailConfirmationTokenAsync(IdentityExpressUser user);
+        Task<string> GenerateEmailConfirmationTokenAsync(IdentityUser user);
 
-    Task<IdentityResult> ConfirmEmailAsync(IdentityExpressUser user, string token);
+        Task<IdentityResult> ConfirmEmailAsync(IdentityUser user, string token);
 
-    Task<bool> IsEmailConfirmedAsync(IdentityExpressUser user);
+        Task<bool> IsEmailConfirmedAsync(IdentityUser user);
 
-    Task<string> GenerateChangeEmailTokenAsync(IdentityExpressUser user, string newEmail);
+        Task<string> GenerateChangeEmailTokenAsync(IdentityUser user, string newEmail);
 
-    Task<IdentityResult> ChangeEmailAsync(IdentityExpressUser user, string newEmail, string token);
+        Task<IdentityResult> ChangeEmailAsync(IdentityUser user, string newEmail, string token);
 
-    Task<string> GetPhoneNumberAsync(IdentityExpressUser user);
+        Task<string> GetPhoneNumberAsync(IdentityUser user);
 
-    Task<IdentityResult> SetPhoneNumberAsync(IdentityExpressUser user, string phoneNumber);
+        Task<IdentityResult> SetPhoneNumberAsync(IdentityUser user, string phoneNumber);
 
-    Task<IdentityResult> ChangePhoneNumberAsync(IdentityExpressUser user, string phoneNumber, string token);
+        Task<IdentityResult> ChangePhoneNumberAsync(IdentityUser user, string phoneNumber, string token);
 
-    Task<bool> IsPhoneNumberConfirmedAsync(IdentityExpressUser user);
+        Task<bool> IsPhoneNumberConfirmedAsync(IdentityUser user);
 
-    Task<string> GenerateChangePhoneNumberTokenAsync(IdentityExpressUser user, string phoneNumber);
+        Task<string> GenerateChangePhoneNumberTokenAsync(IdentityUser user, string phoneNumber);
 
-    Task<bool> VerifyChangePhoneNumberTokenAsync(IdentityExpressUser user, string token, string phoneNumber);
+        Task<bool> VerifyChangePhoneNumberTokenAsync(IdentityUser user, string token, string phoneNumber);
 
-    Task<bool> VerifyUserTokenAsync(IdentityExpressUser user, string tokenProvider, string purpose, string token);
+        Task<bool> VerifyUserTokenAsync(IdentityUser user, string tokenProvider, string purpose, string token);
 
-    Task<string> GenerateUserTokenAsync(IdentityExpressUser user, string tokenProvider, string purpose);
+        Task<string> GenerateUserTokenAsync(IdentityUser user, string tokenProvider, string purpose);
 
-    void RegisterTokenProvider(string providerName, IUserTwoFactorTokenProvider<IdentityExpressUser> provider);
+        void RegisterTokenProvider(string providerName, IUserTwoFactorTokenProvider<IdentityUser> provider);
 
-    Task<IList<string>> GetValidTwoFactorProvidersAsync(IdentityExpressUser user);
+        Task<IList<string>> GetValidTwoFactorProvidersAsync(IdentityUser user);
 
-    Task<bool> VerifyTwoFactorTokenAsync(IdentityExpressUser user, string tokenProvider, string token);
+        Task<bool> VerifyTwoFactorTokenAsync(IdentityUser user, string tokenProvider, string token);
 
-    Task<string> GenerateTwoFactorTokenAsync(IdentityExpressUser user, string tokenProvider);
+        Task<string> GenerateTwoFactorTokenAsync(IdentityUser user, string tokenProvider);
 
-    Task<bool> GetTwoFactorEnabledAsync(IdentityExpressUser user);
+        Task<bool> GetTwoFactorEnabledAsync(IdentityUser user);
 
-    Task<IdentityResult> SetTwoFactorEnabledAsync(IdentityExpressUser user, bool enabled);
+        Task<IdentityResult> SetTwoFactorEnabledAsync(IdentityUser user, bool enabled);
 
-    Task<bool> IsLockedOutAsync(IdentityExpressUser user);
+        Task<bool> IsLockedOutAsync(IdentityUser user);
 
-    Task<IdentityResult> SetLockoutEnabledAsync(IdentityExpressUser user, bool enabled);
+        Task<IdentityResult> SetLockoutEnabledAsync(IdentityUser user, bool enabled);
 
-    Task<bool> GetLockoutEnabledAsync(IdentityExpressUser user);
+        Task<bool> GetLockoutEnabledAsync(IdentityUser user);
 
-    Task<DateTimeOffset?> GetLockoutEndDateAsync(IdentityExpressUser user);
+        Task<DateTimeOffset?> GetLockoutEndDateAsync(IdentityUser user);
 
-    Task<IdentityResult> SetLockoutEndDateAsync(IdentityExpressUser user, DateTimeOffset? lockoutEnd);
+        Task<IdentityResult> SetLockoutEndDateAsync(IdentityUser user, DateTimeOffset? lockoutEnd);
 
-    Task<IdentityResult> AccessFailedAsync(IdentityExpressUser user);
+        Task<IdentityResult> AccessFailedAsync(IdentityUser user);
 
-    Task<IdentityResult> ResetAccessFailedCountAsync(IdentityExpressUser user);
+        Task<IdentityResult> ResetAccessFailedCountAsync(IdentityUser user);
 
-    Task<int> GetAccessFailedCountAsync(IdentityExpressUser user);
+        Task<int> GetAccessFailedCountAsync(IdentityUser user);
 
-    Task<IList<IdentityExpressUser>> GetUsersForClaimAsync(Claim claim);
+        Task<IList<IdentityUser>> GetUsersForClaimAsync(Claim claim);
 
-    Task<IList<IdentityExpressUser>> GetUsersInRoleAsync(string roleName);
+        Task<IList<IdentityUser>> GetUsersInRoleAsync(string roleName);
 
-    Task<string> GetAuthenticationTokenAsync(IdentityExpressUser user, string loginProvider, string tokenName);
+        Task<string> GetAuthenticationTokenAsync(IdentityUser user, string loginProvider, string tokenName);
 
-    Task<IdentityResult> SetAuthenticationTokenAsync(IdentityExpressUser user, string loginProvider, string tokenName, string tokenValue);
+        Task<IdentityResult> SetAuthenticationTokenAsync(IdentityUser user, string loginProvider, string tokenName, string tokenValue);
 
-    Task<IdentityResult> RemoveAuthenticationTokenAsync(IdentityExpressUser user, string loginProvider, string tokenName);
+        Task<IdentityResult> RemoveAuthenticationTokenAsync(IdentityUser user, string loginProvider, string tokenName);
 
-    [return: TupleElementNames(new string[] {"users", "totalMatches"})]
-    Task<ValueTuple<IEnumerable<IdentityExpressUser>, int>> FindAllMatchingUsers(string toMatch, Pagination pagination);
+        // [return: TupleElementNames(new string[] {"users", "totalMatches"})]
+        // Task<ValueTuple<IEnumerable<IdentityUser>, int>>
+        Task<(IEnumerable<IdentityUser> users, int totalMatches)> FindAllMatchingUsers(string toMatch, Pagination pagination);
 
-    [return: TupleElementNames(new string[] {"users", "totalMatches"})]
-    Task<ValueTuple<IEnumerable<IdentityExpressUser>, int>> FindDeletedMatchingUsers(string toMatch, Pagination pagination);
+        Task<(IEnumerable<IdentityUser> users, int totalMatches)> FindDeletedMatchingUsers(string toMatch, Pagination pagination);
 
-    [return: TupleElementNames(new string[] {"users", "totalMatches"})]
-    Task<ValueTuple<IEnumerable<IdentityExpressUser>, int>> FindBlockedMatchingUsers(string toMatch, Pagination pagination);
+        Task<(IEnumerable<IdentityUser> users, int totalMatches)> FindBlockedMatchingUsers(string toMatch, Pagination pagination);
 
-    [return: TupleElementNames(new string[] {"users", "totalMatches"})]
-    Task<ValueTuple<IEnumerable<IdentityExpressUser>, int>> FindActiveMatchingUsers(string toMatch, Pagination pagination);
+        Task<(IEnumerable<IdentityUser> users, int totalMatches)> FindActiveMatchingUsers(string toMatch, Pagination pagination);
 
-    [return: TupleElementNames(new string[] {"users", "totalMatches"})]
-    Task<ValueTuple<IEnumerable<IdentityExpressUser>, int>> FindActiveOrBlockedMatchingUsers(string toMatch, Pagination pagination);
+        Task<(IEnumerable<IdentityUser> users, int totalMatches)> FindActiveOrBlockedMatchingUsers(string toMatch, Pagination pagination);
 
-    [return: TupleElementNames(new string[] {"users", "totalMatches"})]
-    Task<ValueTuple<IEnumerable<IdentityExpressUser>, int>> FindActiveOrDeletedMatchingUsers(string toMatch, Pagination pagination);
+        Task<(IEnumerable<IdentityUser> users, int totalMatches)> FindActiveOrDeletedMatchingUsers(string toMatch, Pagination pagination);
 
-    [return: TupleElementNames(new string[] {"users", "totalMatches"})]
-    Task<ValueTuple<IEnumerable<IdentityExpressUser>, int>> FindDeletedOrBlockedMatchingUsers(string toMatch, Pagination pagination);
-  }
+        Task<(IEnumerable<IdentityUser> users, int totalMatches)> FindDeletedOrBlockedMatchingUsers(string toMatch, Pagination pagination);
+    }
 }

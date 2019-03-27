@@ -1,10 +1,4 @@
-﻿
-
-
-
-
-
-using IdentityExpress.Identity;
+﻿using Extensions.Identity.Stores.XCode;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -20,34 +14,34 @@ namespace IdentityServer4.Admin.Logic.Interfaces.Identity
 
     bool SupportsRoleClaims { get; }
 
-    IQueryable<IdentityExpressRole> Roles { get; }
+    IQueryable<IdentityRole> Roles { get; }
 
-    Task<IdentityResult> CreateAsync(IdentityExpressRole role);
+    Task<IdentityResult> CreateAsync(IdentityRole role);
 
-    Task UpdateNormalizedRoleNameAsync(IdentityExpressRole role);
+    Task UpdateNormalizedRoleNameAsync(IdentityRole role);
 
-    Task<IdentityResult> UpdateAsync(IdentityExpressRole role);
+    Task<IdentityResult> UpdateAsync(IdentityRole role);
 
-    Task<IdentityResult> DeleteAsync(IdentityExpressRole role);
+    Task<IdentityResult> DeleteAsync(IdentityRole role);
 
     Task<bool> RoleExistsAsync(string roleName);
 
     string NormalizeKey(string key);
 
-    Task<IdentityExpressRole> FindByIdAsync(string roleId);
+    Task<IdentityRole> FindByIdAsync(string roleId);
 
-    Task<string> GetRoleNameAsync(IdentityExpressRole role);
+    Task<string> GetRoleNameAsync(IdentityRole role);
 
-    Task<IdentityResult> SetRoleNameAsync(IdentityExpressRole role, string name);
+    Task<IdentityResult> SetRoleNameAsync(IdentityRole role, string name);
 
-    Task<string> GetRoleIdAsync(IdentityExpressRole role);
+    Task<string> GetRoleIdAsync(IdentityRole role);
 
-    Task<IdentityExpressRole> FindByNameAsync(string roleName);
+    Task<IdentityRole> FindByNameAsync(string roleName);
 
-    Task<IdentityResult> AddClaimAsync(IdentityExpressRole role, Claim claim);
+    Task<IdentityResult> AddClaimAsync(IdentityRole role, Claim claim);
 
-    Task<IdentityResult> RemoveClaimAsync(IdentityExpressRole role, Claim claim);
+    Task<IdentityResult> RemoveClaimAsync(IdentityRole role, Claim claim);
 
-    Task<IList<Claim>> GetClaimsAsync(IdentityExpressRole role);
+    Task<IList<Claim>> GetClaimsAsync(IdentityRole role);
   }
 }

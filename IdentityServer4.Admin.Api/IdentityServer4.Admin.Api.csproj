@@ -8,6 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AspNetCore.Identity.XCode" Version="1.0.0-CI00000" />
+    <PackageReference Include="Extensions.Identity.Stores.XCode" Version="1.0.0-CI00000" />
     <PackageReference Include="IdentityServer4.Storage" Version="2.4.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />

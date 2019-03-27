@@ -40,10 +40,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="Interfaces\Identity\IIdentityUnitOfWork.cs" />
+    <Compile Include="Interfaces\Identity\IIdentityUnitOfWorkFactory.cs" />
+    <Compile Include="Interfaces\Identity\IRoleManager.cs" />
+    <Compile Include="Interfaces\Identity\IRoleManagerFactory.cs" />
+    <Compile Include="Interfaces\Identity\IUserManager.cs" />
+    <Compile Include="Interfaces\Identity\IUserManagerFactory.cs" />
     <Compile Include="Logic\Services\IgnorePropertyComparison.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AspNetCore.Identity.XCode" Version="1.0.0-CI00000" />
+    <PackageReference Include="Extensions.Identity.Stores.XCode" Version="1.0.0-CI00000" />
     <PackageReference Include="IdentityServer4.Storage" Version="2.4.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
@@ -51,6 +59,7 @@
 
   <ItemGroup>
     <Folder Include="Logic\Extensions\" />
+    <Folder Include="Logic\Mappers\" />
   </ItemGroup>
 
 </Project>

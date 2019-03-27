@@ -1,14 +1,6 @@
-﻿
-
-
-
-
-
-using IdentityExpress.Identity;
+﻿using Extensions.Identity.Stores.XCode;
 using IdentityServer4.Admin.Logic.Entities.IdentityServer;
 using IdentityServer4.Admin.Logic.Entities.Services;
-using IdentityServer4.Admin.Logic.Entities.Services;
-using IdentityServer4.EntityFramework.Entities;
 using IdentityServer4.Models;
 using System;
 using System.Collections.Generic;
@@ -19,40 +11,36 @@ namespace IdentityServer4.Admin.Logic.Logic.Mappers
 {
     public static class ServiceMappers
   {
-    public static Role ToService(this IdentityExpressRole role)
+    public static Role ToService(this IdentityRole role)
     {
       if (role == null)
         return (Role) null;
       return new Role()
       {
-        Id = role.Id,
+        Id = role.Id.ToString(),
         Name = role.Name,
-        Description = role.Description,
-        Reserved = role.Reserved
+        Description = role.Remark
       };
     }
 
-    public static User ToService(this IdentityExpressUser user, bool includeCollections = true)
+    public static User ToService(this IdentityUser user, bool includeCollections = true)
     {
       if (user == null)
         return (User) null;
       User user1 = new User()
       {
-        Subject = user.Id,
+        Subject = user.Id.ToString(),
         Username = user.UserName,
         Email = user.Email,
-        FirstName = user.FirstName,
-        LastName = user.LastName,
-        IsDeleted = user.IsDeleted,
-        IsBlocked = user.IsBlocked,
-        Claims = (IList<Claim>) new List<Claim>(),
-        Roles = (IList<Role>) new List<Role>()
+        IsDeleted = user.Enable,
+        Claims = new List<Claim>(),
+        Roles = new List<Role>()
       };
       if (includeCollections)
       {
-        foreach (IdentityExpressUserRole role in (IEnumerable<IdentityExpressUserRole>) user.Roles)
+        foreach (IdentityUserRole role in (IEnumerable<IdentityUserRole>) user.Roles)
           user1.Roles.Add(role.Role.ToService());
-        foreach (IdentityExpressClaim claim in (IEnumerable<IdentityExpressClaim>) user.Claims)
+        foreach (IdentityClaim claim in (IEnumerable<IdentityClaim>) user.Claims)
           user1.Claims.Add(claim.ToClaim());
       }
       bool flag;
@@ -79,7 +67,7 @@ namespace IdentityServer4.Admin.Logic.Logic.Mappers
       return user1;
     }
 
-    public static ClaimType ToService(this IdentityExpressClaimType claimType)
+    public static ClaimType ToService(this IdentityClaimType claimType)
     {
       if (claimType == null)
         return (ClaimType) null;
@@ -97,7 +85,7 @@ namespace IdentityServer4.Admin.Logic.Logic.Mappers
       };
     }
 
-    public static IdentityServer4.Admin.Logic.Entities.Services.ApiResource ToService(this IdentityServer4.EntityFramework.Entities.ApiResource resource, ExtendedApiResource extendedResource)
+    public static IdentityServer4.Admin.Logic.Entities.Services.ApiResource ToService(this IdentityServer4.XCode.Entities.ApiResource resource, ExtendedApiResource extendedResource)
     {
       if (resource == null || extendedResource == null)
         return (IdentityServer4.Admin.Logic.Entities.Services.ApiResource) null;

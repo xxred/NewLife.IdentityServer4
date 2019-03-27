@@ -1,11 +1,4 @@
-﻿
-
-
-
-
-
-using IdentityExpress.Identity;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using System;
 using System.Threading.Tasks;
 
@@ -17,7 +10,7 @@ namespace IdentityServer4.Admin.Logic.Interfaces.Identity
 
     IRoleManager RoleManager { get; }
 
-    IRepository<IdentityExpressClaimType, string> ClaimTypeRepository { get; }
+    //IRepository<IdentityClaimType, string> ClaimTypeRepository { get; }
 
     Task<IdentityResult> Commit();
   }
