@@ -1,3 +1,6 @@
 [submodule "IdentityServer4.XCode"]
 	path = IdentityServer4.XCode
 	url = https://github.com/xxred/IdentityServer4.XCode.git
+[submodule "NewLife.IdentityServer4.Vue"]
+	path = NewLife.IdentityServer4.Vue
+	url = https://github.com/xxred/NewLife.IdentityServer4.Vue.git
