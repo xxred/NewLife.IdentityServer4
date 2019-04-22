@@ -28,7 +28,7 @@ namespace NewLife.IdentityServer4
 
             services.AddIdentityServer(options =>
                 {
-                    options.UserInteraction.LoginReturnUrlParameter = "redirect";//返回url的参数名
+                    options.UserInteraction.LoginReturnUrlParameter = "returnUrl";//返回url的参数名
 
                     options.UserInteraction.LoginUrl = "/login";
 
@@ -73,6 +73,7 @@ namespace NewLife.IdentityServer4
                 options.AddConsole();
                 options.AddDebug();
             });
+
 
             // 添加EasyAdmin
             services.AddEasyAdmin();
