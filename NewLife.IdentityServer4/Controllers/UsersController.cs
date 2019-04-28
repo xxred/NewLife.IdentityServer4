@@ -1,4 +1,5 @@
-﻿using Easy.Admin.Areas.Admin.Controllers;
+﻿using System.ComponentModel;
+using Easy.Admin.Areas.Admin.Controllers;
 using Easy.Admin.Areas.Admin.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -16,6 +17,7 @@ namespace NewLife.IdentityServer4.Controllers
     /// <summary>
     /// 用户
     /// </summary>
+    [DisplayName("用户")]
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]

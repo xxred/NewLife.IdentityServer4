@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Easy.Admin.Areas.Admin.Controllers;
@@ -12,6 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace NewLife.IdentityServer4.Controllers
 {
+    [DisplayName("¿Í»§¶Ë")]
     [Route("api/[controller]")]
     [ApiController]
     public class ClientsController : EntityController<Clients>

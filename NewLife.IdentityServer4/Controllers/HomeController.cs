@@ -6,11 +6,13 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using NewLife.IdentityServer4.Attributes;
 
 namespace NewLife.IdentityServer4.Controllers
 {
     [Route("[controller]/[action]")]
     [AllowAnonymous]
+    [NotMenu]
     public class HomeController : BaseController
     {
         private readonly IIdentityServerInteractionService _interaction;
