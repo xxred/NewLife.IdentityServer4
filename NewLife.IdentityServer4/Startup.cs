@@ -97,7 +97,7 @@ namespace NewLife.IdentityServer4
 
             //app.UseExceptionHandler("/Home/Error");
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseCors(options => { options.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin().AllowCredentials(); });
 
