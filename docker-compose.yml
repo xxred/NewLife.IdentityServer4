@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  newlife.identityserver4:
+    image: xxred/newlife.ids4
+    build:
+      context: .
+      dockerfile: NewLife.IdentityServer4/Dockerfile

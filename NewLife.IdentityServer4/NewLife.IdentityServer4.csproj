@@ -3,6 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+    <UserSecretsId>3a3b7097-6ee9-4b08-ab07-e490fcec01ed</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,8 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AspNetCore.Identity.XCode" Version="1.0.0-CI00003" />
-    <PackageReference Include="Easy.Admin" Version="1.0.1-CI-20190422-083851" />
+    <PackageReference Include="AspNetCore.Identity.XCode" Version="1.0.0-*" />
+    <PackageReference Include="Easy.Admin" Version="1.0.1-*" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
