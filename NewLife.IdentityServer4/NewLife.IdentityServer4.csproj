@@ -26,7 +26,12 @@
 
   <ItemGroup>
     <Folder Include="Data\" />
-    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\dist\**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

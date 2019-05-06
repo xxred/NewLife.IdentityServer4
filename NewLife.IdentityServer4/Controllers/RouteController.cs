@@ -22,7 +22,7 @@ namespace NewLife.IdentityServer4.Controllers
         {
             var ctrls = typeof(RoutesController).Assembly.GetTypes()
             .Where(w => typeof(BaseController).IsAssignableFrom(w)
-            && w.GetCustomAttributes(typeof(NotMenuAttribute),false).Length < 1)
+            && w.GetCustomAttributes(typeof(NotMenuAttribute), false).Length < 1)
             .ToList();
 
             var list = new List<object>();
@@ -33,8 +33,6 @@ namespace NewLife.IdentityServer4.Controllers
             {
                 var name = ctrl.Name.TrimEnd("Controller");
                 var title = ctrl.GetDisplayName() ?? name;
-                var info = $"-----------{ctrl.GetDisplayName()}-title-{title}";
-                Console.WriteLine(info);
                 var route = new
                 {
                     path = prefix + name,
