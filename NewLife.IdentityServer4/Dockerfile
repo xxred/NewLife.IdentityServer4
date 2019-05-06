@@ -6,14 +6,15 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/core/sdk:2.2-stretch AS build
 WORKDIR /src
 COPY ["NewLife.IdentityServer4/NewLife.IdentityServer4.csproj", "NewLife.IdentityServer4/"]
+COPY ["NewLife.IdentityServer4/Nuget.config", "NewLife.IdentityServer4/"]
 COPY ["IdentityServer4.XCode/IdentityServer4.XCode.csproj", "IdentityServer4.XCode/"]
-RUN dotnet restore "NewLife.IdentityServer4/NewLife.IdentityServer4.csproj"
+RUN dotnet restore "NewLife.IdentityServer4/NewLife.IdentityServer4.csproj" --configfile "NewLife.IdentityServer4/Nuget.config"
 COPY . .
 WORKDIR "/src/NewLife.IdentityServer4"
-RUN dotnet build "NewLife.IdentityServer4.csproj" -c Release -o /app
+RUN dotnet build "NewLife.IdentityServer4.csproj" -c Release -o /app  --no-restore
 
 FROM build AS publish
-RUN dotnet publish "NewLife.IdentityServer4.csproj" -c Release -o /app
+RUN dotnet publish "NewLife.IdentityServer4.csproj" -c Release -o /app  --no-restore
 
 FROM base AS final
 WORKDIR /app
