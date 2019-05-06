@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace NewLife.IdentityServer4.Controllers
 {
-    [DisplayName("客户端跳转地址")]
+    [DisplayName("瀹㈡埛绔烦杞湴鍧�")]
     [Route("api/[controller]")]
     [ApiController]
     public class ClientRedirectUrisController : EntityController<ClientRedirectUris>

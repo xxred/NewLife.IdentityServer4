@@ -1,4 +1,4 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 using Easy.Admin.Areas.Admin.Controllers;
 using Extensions.Identity.Stores.XCode;
 using Microsoft.AspNetCore.Mvc;

@@ -13,8 +13,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace NewLife.IdentityServer4.Controllers
 {
-    [DisplayName("¿Í»§¶Ë×÷ÓÃÓò")]
-    [Description("Ä¬ÈÏÇé¿öÏÂ£¬¿Í»§¶ËÎŞÈ¨·ÃÎÊÈÎºÎ×ÊÔ´-Í¨¹ıÌí¼ÓÏàÓ¦µÄ×÷ÓÃÓòÃû³ÆÖ¸¶¨ÔÊĞíµÄ×ÊÔ´")]
+    [DisplayName("å®¢æˆ·ç«¯ä½œç”¨åŸŸ")]
+    [Description("é»˜è®¤æƒ…å†µä¸‹ï¼Œå®¢æˆ·ç«¯æ— æƒè®¿é—®ä»»ä½•èµ„æº-é€šè¿‡æ·»åŠ ç›¸åº”çš„ä½œç”¨åŸŸåç§°æŒ‡å®šå…è®¸çš„èµ„æº")]
     [Route("api/[controller]")]
     [ApiController]
     public class ClientScopesController : EntityController<ClientScopes>

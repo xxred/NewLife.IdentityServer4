@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace NewLife.IdentityServer4.Controllers
 {
-    [DisplayName("¿Í»§¶ËÉùÃ÷ÖÖÀà")]
+    [DisplayName("å®¢æˆ·ç«¯å£°æ˜ç§ç±»")]
     [Route("api/[controller]")]
     [ApiController]
     public class ClaimTypesController : EntityController<ClientClaims>

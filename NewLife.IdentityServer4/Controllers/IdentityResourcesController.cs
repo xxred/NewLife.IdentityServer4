@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace NewLife.IdentityServer4.Controllers
 {
-    [DisplayName("身份资源")]
+    [DisplayName("韬唤璧勬簮")]
     [Route("api/[controller]")]
     [ApiController]
     public class IdentityResourcesController : EntityController<IdentityResources>

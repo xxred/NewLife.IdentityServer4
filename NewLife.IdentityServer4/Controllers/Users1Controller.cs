@@ -25,7 +25,7 @@ namespace NewLife.IdentityServer4.Controllers
         {
             if (user == null)
             {
-                return BadRequest("用户不能为空");
+                return BadRequest("鐢ㄦ埛涓嶈兘涓虹┖");
             }
 
             user.Insert();
@@ -41,7 +41,7 @@ namespace NewLife.IdentityServer4.Controllers
         {
             if (string.IsNullOrWhiteSpace(id))
             {
-                return BadRequest("id不能为空");
+                return BadRequest("id涓嶈兘涓虹┖");
             }
             var user = IdsUser.FindByKey(id);
 
@@ -60,7 +60,7 @@ namespace NewLife.IdentityServer4.Controllers
         {
             if (string.IsNullOrWhiteSpace(id))
             {
-                return BadRequest("id不能为空");
+                return BadRequest("id涓嶈兘涓虹┖");
             }
 
             var user = IdsUser.FindByKey(id);
@@ -287,7 +287,7 @@ namespace NewLife.IdentityServer4.Controllers
 
             if (foundUser == null)
             {
-                return NotFound("找不到用户：'" + subject + "'");
+                return NotFound("鎵句笉鍒扮敤鎴凤細'" + subject + "'");
             }
             if (claim == null)
             {

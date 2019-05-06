@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace NewLife.IdentityServer4.Controllers
 {
-    [DisplayName("¿Í»§¶Ë")]
+    [DisplayName("å®¢æˆ·ç«¯")]
     [Route("api/[controller]")]
     [ApiController]
     public class ClientsController : EntityController<Clients>

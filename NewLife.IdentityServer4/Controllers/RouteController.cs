@@ -1,6 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -31,6 +32,9 @@ namespace NewLife.IdentityServer4.Controllers
             foreach (var ctrl in ctrls)
             {
                 var name = ctrl.Name.TrimEnd("Controller");
+                var title = ctrl.GetDisplayName() ?? name;
+                var info = $"-----------{ctrl.GetDisplayName()}-title-{title}";
+                Console.WriteLine(info);
                 var route = new
                 {
                     path = prefix + name,
@@ -44,7 +48,7 @@ namespace NewLife.IdentityServer4.Controllers
                             name= name,
                             meta=new
                             {
-                                title=ctrl.GetDisplayName()?? name,
+                                title= title,
                                 icon="international"
                             }
                         }

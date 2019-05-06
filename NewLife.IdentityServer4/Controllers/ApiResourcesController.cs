@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace NewLife.IdentityServer4.Controllers
 {
-    [DisplayName("Api◊ ‘¥")]
+    [DisplayName("ApiËµÑÊ∫ê")]
     [Route("api/[controller]")]
     [ApiController]
     public class ApiResourcesController : EntityController<ApiResources>
