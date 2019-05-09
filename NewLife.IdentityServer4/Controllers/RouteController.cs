@@ -42,7 +42,7 @@ namespace NewLife.IdentityServer4.Controllers
                         new
                         {
                             path = "index",
-                            template = $"<table-base table-name=\"{name}\" />",
+                            //template = $"<table-base table-name=\"{name}\" />",
                             name= name,
                             meta=new
                             {
