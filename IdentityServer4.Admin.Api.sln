@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewLife.IdentityServer4", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer4.XCode", "IdentityServer4.XCode\IdentityServer4.XCode.csproj", "{992DC31F-0F91-44C4-A15D-8369191423A4}"
 EndProject
-Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "NewLife.IdentityServer4.Vue", "NewLife.IdentityServer4.Vue\NewLife.IdentityServer4.Vue.njsproj", "{EB13A68B-5B82-4828-9864-64E5735C5115}"
-EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{17CC4D9C-D211-457F-B255-17D39C9D4E7B}"
 EndProject
 Global
@@ -37,10 +35,6 @@ Global
 		{992DC31F-0F91-44C4-A15D-8369191423A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{992DC31F-0F91-44C4-A15D-8369191423A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{992DC31F-0F91-44C4-A15D-8369191423A4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EB13A68B-5B82-4828-9864-64E5735C5115}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EB13A68B-5B82-4828-9864-64E5735C5115}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EB13A68B-5B82-4828-9864-64E5735C5115}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EB13A68B-5B82-4828-9864-64E5735C5115}.Release|Any CPU.Build.0 = Release|Any CPU
 		{17CC4D9C-D211-457F-B255-17D39C9D4E7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{17CC4D9C-D211-457F-B255-17D39C9D4E7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17CC4D9C-D211-457F-B255-17D39C9D4E7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
