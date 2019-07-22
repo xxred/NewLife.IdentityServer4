@@ -1,4 +1,4 @@
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using Easy.Admin.Areas.Admin.Controllers;
 using Easy.Admin.Areas.Admin.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -11,6 +11,7 @@ using NewLife.IdentityServer4.ViewModels;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Easy.Admin.Entities;
+using User = NewLife.IdentityServer4.Models.User;
 
 namespace NewLife.IdentityServer4.Controllers
 {

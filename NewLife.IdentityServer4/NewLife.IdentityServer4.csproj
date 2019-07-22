@@ -5,6 +5,7 @@
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
     <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
     <UserSecretsId>3a3b7097-6ee9-4b08-ab07-e490fcec01ed</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,9 +14,10 @@
 
   <ItemGroup>
     <PackageReference Include="AspNetCore.Identity.XCode" Version="1.0.0-*" />
-    <PackageReference Include="Easy.Admin" Version="1.0.1-*" />
+    <PackageReference Include="Easy.Admin" Version="1.1.2019.7220325" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.7.12" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
   </ItemGroup>
@@ -26,6 +28,37 @@
 
   <ItemGroup>
     <Folder Include="Data\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\dist\js\app.a37a9d29.js" />
+    <None Include="wwwroot\dist\js\app.a37a9d29.js.map" />
+    <None Include="wwwroot\dist\js\chunk-08b2bc5a.06fbbb73.js" />
+    <None Include="wwwroot\dist\js\chunk-08b2bc5a.06fbbb73.js.map" />
+    <None Include="wwwroot\dist\js\chunk-15fb9e26.8982f0b0.js" />
+    <None Include="wwwroot\dist\js\chunk-15fb9e26.8982f0b0.js.map" />
+    <None Include="wwwroot\dist\js\chunk-1b0bb306.6c1e248a.js" />
+    <None Include="wwwroot\dist\js\chunk-1b0bb306.6c1e248a.js.map" />
+    <None Include="wwwroot\dist\js\chunk-2d0c5b19.bef68682.js" />
+    <None Include="wwwroot\dist\js\chunk-2d0c5b19.bef68682.js.map" />
+    <None Include="wwwroot\dist\js\chunk-398214c4.6c6973f4.js" />
+    <None Include="wwwroot\dist\js\chunk-398214c4.6c6973f4.js.map" />
+    <None Include="wwwroot\dist\js\chunk-429fbcb3.17d62fce.js" />
+    <None Include="wwwroot\dist\js\chunk-429fbcb3.17d62fce.js.map" />
+    <None Include="wwwroot\dist\js\chunk-479567a7.4014f1b0.js" />
+    <None Include="wwwroot\dist\js\chunk-479567a7.4014f1b0.js.map" />
+    <None Include="wwwroot\dist\js\chunk-4d9aded0.129458ea.js" />
+    <None Include="wwwroot\dist\js\chunk-4d9aded0.129458ea.js.map" />
+    <None Include="wwwroot\dist\js\chunk-56b1a2f2.8560dec8.js" />
+    <None Include="wwwroot\dist\js\chunk-56b1a2f2.8560dec8.js.map" />
+    <None Include="wwwroot\dist\js\chunk-5946c298.e82c0245.js" />
+    <None Include="wwwroot\dist\js\chunk-5946c298.e82c0245.js.map" />
+    <None Include="wwwroot\dist\js\chunk-6ae8c2e3.e861c0c9.js" />
+    <None Include="wwwroot\dist\js\chunk-6ae8c2e3.e861c0c9.js.map" />
+    <None Include="wwwroot\dist\js\chunk-fc906916.ae810fac.js" />
+    <None Include="wwwroot\dist\js\chunk-fc906916.ae810fac.js.map" />
+    <None Include="wwwroot\dist\js\chunk-vendors.27f8f1ca.js" />
+    <None Include="wwwroot\dist\js\chunk-vendors.27f8f1ca.js.map" />
   </ItemGroup>
 
   <ItemGroup>

@@ -24,15 +24,18 @@ namespace NewLife.IdentityServer4
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).ConfigJsonOptions();
-
+            // 添加EasyAdmin
+            services.AddEasyAdmin();
+            
             services.AddIdentityServer(options =>
                 {
                     options.UserInteraction.LoginReturnUrlParameter = "returnUrl";//返回url的参数名
 
                     options.UserInteraction.LoginUrl = "/login";
 
-                    options.Authentication.CookieAuthenticationScheme = "Jwt-Cookie";
+                    options.Authentication.CookieAuthenticationScheme =
+                        //IdentityConstants.ApplicationScheme;
+                        "Jwt-Cookie";
                 })
                 .AddXCodeConfigurationStore()
                 .AddXCodeOperationalStore(options =>
@@ -52,31 +55,19 @@ namespace NewLife.IdentityServer4
                 .AddDefaultTokenProviders();
 
             // 身份验证
-            services.AddAuthentication(
-                options =>
-                {
-                    options.DefaultScheme = JwtBearerAuthenticationDefaults.AuthenticationScheme;
-                    //options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                    options.DefaultAuthenticateScheme = JwtBearerAuthenticationDefaults.AuthenticationScheme;
-                    options.DefaultSignInScheme = JwtBearerAuthenticationDefaults.AuthenticationScheme;
-                })
-                // SignManager内部使用IdentityConstants.ApplicationScheme作为登陆方案名称
-                .AddJwtBearerSignIn(IdentityConstants.ApplicationScheme)
-                // IdentityServer内部Cookie登陆方案名称，避免跟正常使用的JwtBearerSignIn方案名称一致，
-                // TODO 一样的话将会验证多一些声明，具体未详细记录
-                .AddJwtBearerSignIn("Jwt-Cookie");
+            services.AddAuthentication()
+            //    // IdentityServer内部Cookie登陆方案名称，避免跟正常使用的JwtBearerSignIn方案名称一致，
+            //    // TODO 一样的话将会验证多一些声明，具体未详细记录
+                .AddJwtBearerSignIn("Jwt-Cookie", options =>
+            {
 
-            services.AddCors();
-
+            });
+            
             services.AddLogging(options =>
             {
                 options.AddConsole();
                 options.AddDebug();
             });
-
-
-            // 添加EasyAdmin
-            services.AddEasyAdmin();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
