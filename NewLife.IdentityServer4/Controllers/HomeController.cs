@@ -1,4 +1,4 @@
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Easy.Admin.Areas.Admin.Controllers;
 using IdentityServer4.Models;
 using IdentityServer4.Services;
@@ -13,7 +13,7 @@ namespace NewLife.IdentityServer4.Controllers
     [Route("[controller]/[action]")]
     [AllowAnonymous]
     [NotMenu]
-    public class HomeController : BaseController
+    public class HomeController : AdminControllerBase
     {
         private readonly IIdentityServerInteractionService _interaction;
         private readonly IHostingEnvironment _environment;
