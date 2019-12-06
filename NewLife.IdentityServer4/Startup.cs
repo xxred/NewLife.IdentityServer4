@@ -11,6 +11,7 @@ using System.IdentityModel.Tokens.Jwt;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
 using NewLife.IdentityServer4.Controllers;
+using Microsoft.Extensions.Hosting;
 
 namespace NewLife.IdentityServer4
 {
@@ -54,15 +55,15 @@ namespace NewLife.IdentityServer4
                                                  //.AddJwtBearerClientAuthentication()
                 ;
 
-            // 身份验证
-            services.AddAuthentication()
-            //    // IdentityServer内部Cookie登陆方案名称，避免跟正常使用的JwtBearerSignIn方案名称一致，
-            //    // TODO 一样的话将会验证多一些声明，具体未详细记录
-                .AddJwtBearerSignIn("Jwt-Cookie", options =>
-            {
-                // 获得跟EasyAdmin同样的配置
-                AuthenticationConfig.ConfigureJwtBearerOptions(options, Configuration);
-            });
+            //// 身份验证
+            //services.AddAuthentication()
+            ////    // IdentityServer内部Cookie登陆方案名称，避免跟正常使用的JwtBearerSignIn方案名称一致，
+            ////    // TODO 一样的话将会验证多一些声明，具体未详细记录
+            //    .AddJwtBearerSignIn("Jwt-Cookie", options =>
+            //{
+            //    // 获得跟EasyAdmin同样的配置
+            //    AuthenticationConfig.ConfigureJwtBearerOptions(options, Configuration);
+            //});
 
             services.AddLogging(options =>
             {
@@ -83,7 +84,7 @@ namespace NewLife.IdentityServer4
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             // 不使用EasyAdmin管道，为了插入 IdentityServer
             //app.UseAdminBase();
@@ -135,15 +136,18 @@ namespace NewLife.IdentityServer4
 
             app.UseStaticFiles(staticFileOptions);
 
-            // 跨域
-            app.UseCors(options => { options.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin().AllowCredentials(); });
+            app.UseRouting();
+
+            //跨域
+            app.UseCors("default");
 
             //身份认证
             app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseIdentityServer();
 
-            app.UseMvc();
+            app.UseEndpoints(options => { options.MapControllers(); });
 
             //以下为SPA准备，这里是
             if (env.WebRootPath != null)
