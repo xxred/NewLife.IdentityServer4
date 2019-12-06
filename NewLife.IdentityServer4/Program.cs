@@ -25,6 +25,7 @@ namespace NewLife.IdentityServer4
                     webBuilder.UseKestrel(serverOptions =>
                         {
                             // Set properties and call methods on options
+                            serverOptions.AllowSynchronousIO = true; // 允许同步IO
                         })
                         //.UseIIS()
                         //.UseIISIntegration()

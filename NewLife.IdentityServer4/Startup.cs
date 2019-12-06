@@ -12,6 +12,7 @@ using Microsoft.Extensions.FileProviders;
 using System.IO;
 using NewLife.IdentityServer4.Controllers;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Identity;
 
 namespace NewLife.IdentityServer4
 {
@@ -41,8 +42,8 @@ namespace NewLife.IdentityServer4
                     options.UserInteraction.LoginUrl = "/login";
 
                     options.Authentication.CookieAuthenticationScheme =
-                        //IdentityConstants.ApplicationScheme;
-                        "Jwt-Cookie";
+                        IdentityConstants.ApplicationScheme;
+                    //"Jwt-Cookie";
                 })
                 .AddXCodeConfigurationStore()
                 .AddXCodeOperationalStore(options =>
@@ -129,10 +130,10 @@ namespace NewLife.IdentityServer4
                 FileProvider = fileProvider
             };
 
-            app.UseDefaultFiles(new DefaultFilesOptions()
-            {
-                FileProvider = fileProvider
-            });
+            //app.UseDefaultFiles(new DefaultFilesOptions()
+            //{
+            //    FileProvider = fileProvider
+            //});
 
             app.UseStaticFiles(staticFileOptions);
 
@@ -157,12 +158,7 @@ namespace NewLife.IdentityServer4
                     // options.Options.SourcePath = "ClientApp"; 前端项目在ClientApp文件夹
 
                     options.Options.DefaultPageStaticFileOptions =
-                        //staticFileOptions;
-                        staticFileOptions = new StaticFileOptions()
-                        {
-                            FileProvider = new PhysicalFileProvider(Path.Combine(env.WebRootPath, "dist"))
-                        };
-
+                        staticFileOptions;
                     // options.UseProxyToSpaDevelopmentServer("http://127.0.0.1:1337/"); // 转发请求到前端项目
                 });
             }
