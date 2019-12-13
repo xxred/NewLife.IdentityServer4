@@ -9,12 +9,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Nuget.config" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="bin\Debug\netcoreapp3.1\XCode.pdb" />
+    <None Include="Nuget.config" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Easy.Admin" Version="1.3.2019.12121515" />
     <PackageReference Include="MySql.Data" Version="8.0.17" />
     <!--<PackageReference Include="Easy.Admin" Version="1.1.2019.7220325" />-->
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Easy.Admin\Easy.Admin\Easy.Admin.csproj" />
     <ProjectReference Include="..\IdentityServer4.XCode\IdentityServer4.XCode.csproj" />
   </ItemGroup>
 
