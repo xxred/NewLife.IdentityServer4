@@ -22,10 +22,15 @@ namespace NewLife.IdentityServer4
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseKestrel(serverOptions =>
+                    webBuilder
+                        .UseKestrel(serverOptions =>
                         {
                             // Set properties and call methods on options
                             serverOptions.AllowSynchronousIO = true; // 允许同步IO
+
+                            // 上述设置还可用以下方式替代，在需要读取Body的地方设置即可
+                            //var ft = HttpContext.Features.Get<Microsoft.AspNetCore.Http.Features.IHttpBodyControlFeature>();
+                            //if (ft != null) ft.AllowSynchronousIO = true;
                         })
                         //.UseIIS()
                         //.UseIISIntegration()
