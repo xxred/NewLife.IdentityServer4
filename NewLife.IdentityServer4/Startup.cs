@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
+using Easy.Admin.SpaServices;
 using NewLife.IdentityServer4.Controllers;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -124,18 +125,8 @@ namespace NewLife.IdentityServer4
                 }
             });
 
-            var fileProvider = new PhysicalFileProvider(Path.Combine(env.WebRootPath, "dist"));
-            var staticFileOptions = new StaticFileOptions()
-            {
-                FileProvider = fileProvider
-            };
-
-            //app.UseDefaultFiles(new DefaultFilesOptions()
-            //{
-            //    FileProvider = fileProvider
-            //});
-
-            app.UseStaticFiles(staticFileOptions);
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
 
             app.UseRouting();
 
@@ -150,16 +141,40 @@ namespace NewLife.IdentityServer4
 
             app.UseEndpoints(options => { options.MapControllers(); });
 
-            //以下为SPA准备，这里是
-            if (env.WebRootPath != null)
+            // 如果是开发环境，并且配置了前端源码路径，则启用前端开发中间件
+            // 否则设置打包后的静态文件
+            // ClientAppSourcePath配置优先，生产部署无需配置，因此，改配置放在appsettings.Development.json即可
+
+            var clientAppSourcePath = Configuration["ClientAppSourcePath"];
+
+            if (env.IsDevelopment() && !clientAppSourcePath.IsNullOrWhiteSpace())
             {
                 app.UseSpa(options =>
                 {
-                    // options.Options.SourcePath = "ClientApp"; 前端项目在ClientApp文件夹
+                    // 开发时，当前目录就是项目目录，而不是bin目录
+                    options.Options.SourcePath = clientAppSourcePath;
+                    //options.Options.StartupTimeout = TimeSpan.FromSeconds(20);
+                    options.UseVueDevelopmentServer("yarn", "start");
+                });
+            }
+            else if (env.WebRootPath != null)
+            {
+                // 如果dist文件夹不存在，说明没有部署前端文件
+                var dist = Path.Combine(env.WebRootPath, "dist");
+                if (!Directory.Exists(dist))
+                {
+                    return;
+                }
 
-                    options.Options.DefaultPageStaticFileOptions =
-                        staticFileOptions;
-                    // options.UseProxyToSpaDevelopmentServer("http://127.0.0.1:1337/"); // 转发请求到前端项目
+                app.UseSpa(options =>
+                {
+                    var staticFileOptions = new StaticFileOptions()
+                    {
+                        FileProvider = new PhysicalFileProvider(dist)
+                    };
+
+                    app.UseSpaStaticFiles(staticFileOptions);
+                    options.Options.DefaultPageStaticFileOptions = staticFileOptions;
                 });
             }
         }
