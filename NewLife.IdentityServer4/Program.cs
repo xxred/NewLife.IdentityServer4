@@ -20,21 +20,24 @@ namespace NewLife.IdentityServer4
 
         private static IHostBuilder CreateWebHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration((context, configBinder) =>
+                {
+                    var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                    var fileInfo = new FileInfo(baseDirectory + "Config/appsettings.json");
+                    if (!fileInfo.Exists)
+                    {
+                        if (fileInfo.Directory != null && !fileInfo.Directory.Exists)
+                        {
+                            fileInfo.Directory.Create();
+                        }
+                        File.Copy(baseDirectory + "appsettings.json", fileInfo.FullName);
+                    }
+
+                    configBinder.AddJsonFile(fileInfo.FullName);
+                })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder
-                        .UseKestrel(serverOptions =>
-                        {
-                            // Set properties and call methods on options
-                            serverOptions.AllowSynchronousIO = true; // 允许同步IO
-
-                            // 上述设置还可用以下方式替代，在需要读取Body的地方设置即可
-                            //var ft = HttpContext.Features.Get<Microsoft.AspNetCore.Http.Features.IHttpBodyControlFeature>();
-                            //if (ft != null) ft.AllowSynchronousIO = true;
-                        })
-                        //.UseIIS()
-                        //.UseIISIntegration()
-                        .UseStartup<Startup>();
+                    webBuilder.UseStartup<Startup>();
                 });
     }
 }

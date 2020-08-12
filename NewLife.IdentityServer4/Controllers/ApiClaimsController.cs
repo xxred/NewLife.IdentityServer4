@@ -5,10 +5,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace NewLife.IdentityServer4.Controllers
 {
-    [DisplayName("客户端声明种类")]
+    [DisplayName("Api声明")]
     [Route("api/[controller]")]
     [ApiController]
-    public class ClaimTypesController : EntityController<ClientClaims>
+    public class ApiClaimsController : EntityController<ApiClaims>
     {
     }
 }

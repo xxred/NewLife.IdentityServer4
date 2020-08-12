@@ -18,12 +18,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Easy.Admin" Version="1.3.2019.12121515" />
+    <!--<PackageReference Include="Easy.Admin" Version="1.3.2020.7170546" />-->
     <PackageReference Include="MySql.Data" Version="8.0.17" />
-    <!--<PackageReference Include="Easy.Admin" Version="1.1.2019.7220325" />-->
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Easy.Admin\Easy.Admin\Easy.Admin.csproj" />
     <ProjectReference Include="..\IdentityServer4.XCode\IdentityServer4.XCode.csproj" />
   </ItemGroup>
 

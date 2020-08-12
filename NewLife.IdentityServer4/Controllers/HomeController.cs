@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Easy.Admin.Areas.Admin.Controllers;
+using Easy.Admin.Entities;
 using IdentityServer4.Models;
 using IdentityServer4.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -8,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NewLife.IdentityServer4.Attributes;
+using NewLife.Log;
 
 namespace NewLife.IdentityServer4.Controllers
 {
@@ -31,7 +33,7 @@ namespace NewLife.IdentityServer4.Controllers
         /// Shows the error page
         /// </summary>
         [HttpGet]
-        public async Task<ErrorMessage> Error(string errorId)
+        public async Task<ApiResult<string>> Error(string errorId)
         {
             // retrieve error details from identityserver
             var message = await _interaction.GetErrorContextAsync(errorId);
@@ -42,9 +44,15 @@ namespace NewLife.IdentityServer4.Controllers
                     // only show in development
                     message.ErrorDescription = null;
                 }
-            }
 
-            return message;
+                XTrace.WriteLine($"授权出错：{message.Error}。描述：{message.ErrorDescription}");
+
+                throw ApiException.Common(message.Error, 402);
+            }
+            else
+            {
+                return ApiResult<string>.Ok("没有错误，但是跳到了'/home/error'这里");
+            }
         }
     }
 }

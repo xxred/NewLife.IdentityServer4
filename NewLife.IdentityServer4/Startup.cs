@@ -1,5 +1,4 @@
 ﻿using System;
-using Easy.Admin.Areas.Admin.Controllers;
 using Easy.Admin.Configuration;
 using Easy.Admin.Extensions;
 using Microsoft.AspNetCore.Builder;
@@ -14,7 +13,8 @@ using Easy.Admin.SpaServices;
 using NewLife.IdentityServer4.Controllers;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Identity;
-using Easy.Admin.SpaServices;
+using IdentityServer4.Extensions;
+using NewLife.IdentityServer4.Services;
 
 namespace NewLife.IdentityServer4
 {
@@ -54,6 +54,7 @@ namespace NewLife.IdentityServer4
                     options.EnableTokenCleanup = true;
                     // options.TokenCleanupInterval = 15; // interval in seconds. 15 seconds useful for debugging
                 })
+                .AddProfileService<ProfileService>()
                 .AddDeveloperSigningCredential() // 生成一个密钥对，并存储到tempkey.rsa
                                                  //.AddJwtBearerClientAuthentication()
                 ;
@@ -92,22 +93,19 @@ namespace NewLife.IdentityServer4
             // 不使用EasyAdmin管道，为了插入 IdentityServer
             //app.UseAdminBase();
 
+            app.Use(async (ctx, next) =>
+            {
+                // 如果是代理，设置重新设置Scheme
+                if (ctx.Request.Headers.ContainsKey("X-Forwarded-Proto"))
+                {
+                    ctx.Request.Scheme = ctx.Request.Headers["X-Forwarded-Proto"];
+                }
+
+                await next();
+            });
+
             app.UseApiExceptionHandler();
-
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
-
-            //app.UseHttpsRedirection();
-
-            app.UseExceptionHandler("/Home/Error");
-
+            //IdentityServer4.Validation.AuthorizeRequestValidator
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
