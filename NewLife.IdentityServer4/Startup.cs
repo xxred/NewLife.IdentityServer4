@@ -9,11 +9,18 @@ using Microsoft.Extensions.Logging;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
+using Cheerble.WebApi.Common;
+using Easy.Admin.Common;
+using Easy.Admin.Services;
+using Easy.Admin.Services.Impl;
 using Easy.Admin.SpaServices;
 using NewLife.IdentityServer4.Controllers;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Identity;
 using IdentityServer4.Extensions;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using NewLife.Caching;
+using NewLife.IdentityServer4.Common;
 using NewLife.IdentityServer4.Services;
 
 namespace NewLife.IdentityServer4
@@ -85,6 +92,19 @@ namespace NewLife.IdentityServer4
                 options.RootUrl = "api";
                 options.ScanAssembly = type.Assembly;
             });
+
+
+            // 配置短信服务
+            services.AddPhoneMessage(options =>
+            {
+                Configuration.GetSection(nameof(PhoneMessage)).Bind(options);
+            });
+
+            // 配置邮件服务
+            services.AddMailMessage(options =>
+            {
+                Configuration.GetSection(nameof(MailMessage)).Bind(options);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -92,6 +112,9 @@ namespace NewLife.IdentityServer4
         {
             // 不使用EasyAdmin管道，为了插入 IdentityServer
             //app.UseAdminBase();
+
+            // 添加验证码模块
+            app.AddVerCode();
 
             app.Use(async (ctx, next) =>
             {
