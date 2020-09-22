@@ -19,6 +19,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Identity;
 using IdentityServer4.Extensions;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Options;
 using NewLife.Caching;
 using NewLife.IdentityServer4.Common;
 using NewLife.IdentityServer4.Services;
@@ -110,6 +111,10 @@ namespace NewLife.IdentityServer4
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            // 多语言配置
+            var locOptions = app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>();
+            app.UseRequestLocalization(locOptions.Value);
+
             // 不使用EasyAdmin管道，为了插入 IdentityServer
             //app.UseAdminBase();
 
